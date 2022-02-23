@@ -57,26 +57,25 @@ void pi_taylor_chunk(std::vector<my_float>& output, std::vector<my_float>& times
 
 int main(int argc, const char* argv[]) {
 
-
-    //auto ret_pair = usage(argc, argv);
-    //auto steps = ret_pair.first;
-    //auto threads = ret_pair.second;
-
+    // Initialization of parameters
     size_t threads = 2;
     size_t steps = 20;
     my_float pi = 0;
 
-    // please complete missing parts
     std::vector<my_float> output(threads);
     std::vector<my_float> times(threads);
     std::vector<std::thread> thread_vector(threads);
+    
+    // Do the split of the input vector and assign numbers from that vector to each thread
     auto chunks = split_evenly(steps, threads);
 
+    // Check that the number of steps in the series is larger than the number of threads
     if (steps < threads) {
         std::cerr << "The number of steps must be larger than the number of threads" << std::endl;
         exit(1);
     }
 
+    // Task parallelization, each thread computes its corresponding values of the Taylor series
     auto start = std::chrono::high_resolution_clock::now();
     for (size_t i = 0; i < threads; ++i) {
         auto begin_end = get_chunk_begin_end(chunks, i);
@@ -84,10 +83,12 @@ int main(int argc, const char* argv[]) {
         std::cout << "The thread " << i + 1 << " computed the sum from the element " << begin_end.first << " to " << begin_end.second << std::endl;
     }
 
+    // Wait for all threads to finish their task
     for (size_t i = 0; i < threads; ++i) {
         thread_vector[i].join();
     }
 
+    // Sum all terms of each thread computed to approximate pi and print the execution time of each thread
     my_float max_time = 0, min_time = 100;
     for (size_t i = 0; i < threads; i++) {
         pi += output[i];
