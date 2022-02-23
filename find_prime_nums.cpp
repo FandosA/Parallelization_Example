@@ -74,13 +74,13 @@ int main() {
     int limit_value = 7;
     int vector_size = 10;
     int vector_range = 30;
-    size_t steps = vector_size;
+    
     std::vector<std::vector<int>> output(threads);
     std::vector<std::thread> thread_vector(threads);
 
-    auto chunks = split_evenly(steps, threads);
+    auto chunks = split_evenly(vector_size, threads);
 
-    if (steps < threads) {
+    if (vector_size < threads) {
 	std::cerr << "The number of steps must be larger than the number of threads" << std::endl;
 	exit(1);
     }
