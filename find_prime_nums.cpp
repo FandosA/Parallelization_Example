@@ -78,10 +78,12 @@ int main() {
     std::vector<std::vector<int>> output(threads);
     std::vector<std::thread> thread_vector(threads);
 
+    // Do the split of the input vector and assign numbers from that vector to each thread
     auto chunks = split_evenly(vector_size, threads);
 
+    // Check tha the number of elements in the input array is larger tha the number of threads
     if (vector_size < threads) {
-	std::cerr << "The number of steps must be larger than the number of threads" << std::endl;
+	std::cerr << "The number of the input array must be larger than the number of threads" << std::endl;
 	exit(1);
     }
 
@@ -92,15 +94,19 @@ int main() {
 	vector[i] = rand() % vector_range + 1;
     }
 
+    // Task parallelization, each thread looks for the prime values larger than the given one in its
+    // corresponding set of numbers from the input array
     for (size_t i = 0; i < threads; i++) {
 	auto begin_end = get_chunk_begin_end(chunks, i);
 	thread_vector[i] = std::thread(find_primes_larger, std::ref(output), vector, limit_value, i, begin_end.first, begin_end.second);
     }
 
+    // Wait for all threads to finish their task
     for (size_t i = 0; i < threads; i++) {
 	thread_vector[i].join();
     }
-
+	
+    // Print the numbers from the input array
     std::cout << "The values of the vector are:  ";
     for (size_t i = 0; i < vector_size; i++) {
 	if (i < vector_size - 2)
@@ -111,6 +117,7 @@ int main() {
 	    std::cout << " and " << vector[i] << std::endl;
     }
 
+    // Print the prime numbers larger than the given value found in the input array
     std::cout << "The prime values bigger than " << limit_value << " of the input array are: ";
     for (int i = 0; i < output.size(); i++)
 	for (int j = 0; j < output[i].size(); j++)
