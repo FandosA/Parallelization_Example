@@ -81,13 +81,14 @@ int main() {
     // Do the split of the input vector and assign numbers from that vector to each thread
     auto chunks = split_evenly(vector_size, threads);
 
-    // Check tha the number of elements in the input array is larger tha the number of threads
+    // Check that the number of elements in the input array is larger than the number of threads
     if (vector_size < threads) {
 	std::cerr << "The number of the input array must be larger than the number of threads" << std::endl;
 	exit(1);
     }
 
-    // Fill the vector in which the program will find the prime numbers larger than the limit value randomly
+    // Fill the vector in which the program will find the prime numbers larger than the given value randomly
+    // With the command srand(time(NULL)) the seed is changed to generate different numbers each time the program is executed
     srand(time(NULL));
     std::vector<int> vector(vector_size);
     for (int i = 0; i < vector_size; ++i) {
