@@ -10,7 +10,6 @@
 using my_float = long double;
 using namespace std;
 
-
 typedef struct {
     size_t large_chunk;
     size_t small_chunk;
@@ -55,7 +54,7 @@ void pi_taylor_chunk(std::vector<my_float>& output, std::vector<my_float>& times
 }
 
 
-int main(int argc, const char* argv[]) {
+int main() {
 
     // Initialization of parameters
     size_t threads = 2;
