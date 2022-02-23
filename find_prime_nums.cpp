@@ -59,7 +59,7 @@ bool is_prime(int n)
 
 // Function to find the prime numbers largerthan a given value from an array
 void find_primes_larger(std::vector<std::vector<int>> &output, std::vector<int> vector,
-						int limit_value, size_t thread_id, size_t start_step, size_t stop_step)
+			int limit_value, size_t thread_id, size_t start_step, size_t stop_step)
 {
 	for (size_t i = start_step; i < stop_step; i++)
 		if (vector[i] > limit_value && is_prime(vector[i])) {
