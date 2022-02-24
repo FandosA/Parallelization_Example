@@ -58,7 +58,7 @@ int main() {
 
     // Initialization of parameters
     size_t threads = 2;
-    size_t steps = 20;
+    size_t steps = 200;
     my_float pi = 0;
 
     std::vector<my_float> output(threads);
@@ -96,6 +96,8 @@ int main() {
         if (times[i] < min_time) min_time = times[i];
         if (times[i] > max_time) max_time = times[i];
     }
+    
+    std::cout << "" << std::endl;
     std::cout << "The maximum time of the execution times of the threads was: " << max_time << std::endl;
     std::cout << "The minimum time of the execution times of the threads was: " << min_time << std::endl;
     std::cout << "The ratio was: " << max_time << "/" << min_time << " = " << max_time / min_time << std::endl;
