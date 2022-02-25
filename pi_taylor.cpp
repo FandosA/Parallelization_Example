@@ -96,13 +96,13 @@ int main() {
         if (times[i] < min_time) min_time = times[i];
         if (times[i] > max_time) max_time = times[i];
     }
+    pi = pi * 4;
     
     std::cout << "" << std::endl;
     std::cout << "The maximum time of the execution times of the threads was: " << max_time << std::endl;
     std::cout << "The minimum time of the execution times of the threads was: " << min_time << std::endl;
     std::cout << "The ratio was: " << max_time << "/" << min_time << " = " << max_time / min_time << std::endl;
 
-    pi = pi * 4;
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
