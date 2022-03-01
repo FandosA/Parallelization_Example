@@ -59,7 +59,6 @@ int main() {
     // Initialization of parameters
     size_t threads = 2;
     size_t steps = 200;
-    my_float pi = 0;
 
     std::vector<my_float> output(threads);
     std::vector<my_float> times(threads);
@@ -88,7 +87,7 @@ int main() {
     }
 
     // Sum all terms of each thread computed to approximate pi and print the execution time of each thread
-    my_float max_time = 0, min_time = 100;
+    my_float max_time = 0, min_time = 100, pi = 0;
     for (size_t i = 0; i < threads; i++) {
         pi += output[i];
         std::cout << "" << std::endl;
