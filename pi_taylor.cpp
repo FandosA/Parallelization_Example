@@ -40,7 +40,7 @@ get_chunk_begin_end(const chunk_info& ci, size_t index)
 }
 
 
-void pi_taylor_chunk(std::vector<my_float>& output, std::vector<my_float>& times, size_t thread_id, size_t start_step, size_t stop_step) {
+void pi_taylor_chunk(std::vector<my_float> &output, std::vector<my_float>& times, size_t thread_id, size_t start_step, size_t stop_step) {
     my_float sumatorio = 0;
     auto start_chunk = std::chrono::high_resolution_clock::now();
     for (size_t i = start_step; i < stop_step; i += 1) {
