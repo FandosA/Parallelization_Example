@@ -92,7 +92,7 @@ int main() {
     srand(time(NULL));
     std::vector<int> vector(vector_size);
     for (int i = 0; i < vector_size; ++i) {
-	vector[i] = rand() % vector_range + 1;
+	vector[i] = rand() % vector_range;
     }
 
     // Task parallelization, each thread looks for the prime values larger than the given one in its
